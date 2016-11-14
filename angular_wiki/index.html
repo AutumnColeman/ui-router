@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wiki</title>
+
+    <script src="../angular.js"></script>
+    <script src="../angular-ui-router.js"></script>
+
+    <script>
+      var app = angular.module('wiki', ['ui.router']);
+
+      function WikiPage(title, content) {
+        this.title = title;
+        this.content = content;
+      }
+
+      var pages = {
+        Python: new WikiPage('Python', 'Python is a fun to use programming language. It is great for beginners.'),
+        HTML: new WikiPage('HTML', 'HTML is the markup language used for making pages on the world wide web.')
+      };
+
+      app.controller('WikiController', function($scope, $stateParams, $state) {
+        $scope.name = $stateParams.name;
+      });
+
+      app.config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+          .state({
+            name: 'home',
+            url: '/',
+            templateUrl: 'home.html',
+            controller: 'WikiController'
+          })
+          .state({
+            name: 'page_view',
+            url: '/{name}',
+            templateUrl: 'index.html',
+            controller: 'WikiController'
+          });
+
+        $urlRouterProvider.otherwise('/');
+    });
+
+    </script>
+  </head>
+  <body ng-app="wiki">
+      <ui-view></ui-view>
+  </body>
+</html>
