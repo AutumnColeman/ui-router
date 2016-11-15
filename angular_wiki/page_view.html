@@ -6,5 +6,8 @@
   </p>
 </div>
 <div ng-hide="page">
-  <h3>This page does not exist yet.</h3> <a href="#">Create it</a>
+  <h3>This page does not exist yet.</h3>
+  <button type="button">
+    <a ui-sref="page_edit({page_name: pageName})">Create it</a>
+  </button>
 </div>

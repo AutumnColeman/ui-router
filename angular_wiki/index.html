@@ -26,7 +26,14 @@
       });
 
       app.controller('PageEditController', function($scope, $stateParams, $state) {
-        $scope.name = $stateParams.page_name;
+        $scope.pageName = $stateParams.page_name;
+        $scope.page = pages[$scope.pageName];
+        if (!$scope.page) {
+          var page = new WikiPage($scope.pageName, '');
+          pages[$scope.pageName] = page;
+          $scope.page = page;
+
+        }
 
       });
 
@@ -45,7 +52,7 @@
             controller: 'PageViewController'
           })
           .state({
-            name: 'edit',
+            name: 'page_edit',
             url: '/{page_name}/edit',
             templateUrl: 'page_edit.html',
             controller: 'PageViewController'
