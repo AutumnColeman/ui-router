@@ -1,4 +1,5 @@
 
 <h1>Edit {{pageName}}</h1>
-<textarea name="content" cols="60" rows ="10">
+<textarea ng-model="page.content" name="content" cols="60" rows ="10">
 </textarea>
+<button><a ui-sref="page_view({page_name: pageName})">Submit Edit</a></button>
