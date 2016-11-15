@@ -1,4 +1,10 @@
-<h1>{{name}}</h1>
-<p>
-  {{content}}
-</p>
+
+<h1>{{pageName}}</h1>
+<div ng-show="page">
+  <p>
+    {{page.content}}
+  </p>
+</div>
+<div ng-hide="page">
+  <h3>This page does not exist yet.</h3> <a href="#">Create it</a>
+</div>

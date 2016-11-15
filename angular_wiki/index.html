@@ -21,10 +21,8 @@
       };
 
       app.controller('PageViewController', function($scope, $stateParams, $state) {
-        $scope.name = $stateParams.page_name;
-        $scope.content = pages[$scope.name].content;
-        console.log($scope.name);
-        console.log($scope.content);
+        $scope.pageName = $stateParams.page_name;
+        $scope.page = pages[$scope.pageName];
       });
 
       app.controller('PageEditController', function($scope, $stateParams, $state) {
