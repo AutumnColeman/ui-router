@@ -20,8 +20,16 @@
         HTML: new WikiPage('HTML', 'HTML is the markup language used for making pages on the world wide web.')
       };
 
-      app.controller('WikiController', function($scope, $stateParams, $state) {
-        $scope.name = $stateParams.name;
+      app.controller('PageViewController', function($scope, $stateParams, $state) {
+        $scope.name = $stateParams.page_name;
+        $scope.content = pages[$scope.name].content;
+        console.log($scope.name);
+        console.log($scope.content);
+      });
+
+      app.controller('PageEditController', function($scope, $stateParams, $state) {
+        $scope.name = $stateParams.page_name;
+
       });
 
       app.config(function($stateProvider, $urlRouterProvider) {
@@ -30,13 +38,19 @@
             name: 'home',
             url: '/',
             templateUrl: 'home.html',
-            controller: 'WikiController'
+            controller: 'PageViewController'
           })
           .state({
             name: 'page_view',
-            url: '/{name}',
-            templateUrl: 'index.html',
-            controller: 'WikiController'
+            url: '/{page_name}',
+            templateUrl: 'page_view.html',
+            controller: 'PageViewController'
+          })
+          .state({
+            name: 'edit',
+            url: '/{page_name}/edit',
+            templateUrl: 'page_edit.html',
+            controller: 'PageViewController'
           });
 
         $urlRouterProvider.otherwise('/');
